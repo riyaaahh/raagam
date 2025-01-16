@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+    font-family: 'Please write me a song';
+    src: url('/Users/shifnariya/Downloads/Please-write-me-a-sing-font') format('truetype');
+  }

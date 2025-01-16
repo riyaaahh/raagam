@@ -2,36 +2,96 @@ import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { FiAlignLeft } from "react-icons/fi";
 import { LuPanelLeftClose } from "react-icons/lu";
-import wildflower from './../../assets/covers/wildflower.jpg';
-import onedirection from './../../assets/covers/onedirection.jpg';
-import thatssotrue from './../../assets/covers/thatssotrue.jpg';
+import wildflower from "./../../assets/covers/wildflower.jpg";
+import onedirection from "./../../assets/covers/onedirection.jpg";
+import thatssotrue from "./../../assets/covers/thatssotrue.jpg";
+import theycallthislove from "./../../assets/covers/theycallthislove.jpg";
 import { PiHeartFill, PiPauseFill, PiPlayFill } from "react-icons/pi";
-import Wildflower from '../../assets/songs/wildflower.mp3'
+import Wildflower from "../../assets/songs/wildflower.mp3";
+import Thatssotrue from "../../assets/songs/thatssotrue.mp3";
+import Bestsongever from "../../assets/songs/bestsongever.mp3";
+import Theycallthislove from "../../assets/songs/theycallthislove.mp3";
+
+import Playlist from '../Playlist'
 import { VscDebugRestart } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
+  const [isPlaying1, setIsPlaying1] = useState(false);
+  const [isPlaying2, setIsPlaying2] = useState(false);
+  const [isPlaying3, setIsPlaying3] = useState(false);
+  const [isPlaying4, setIsPlaying4] = useState(false);
+    const audioRef1 = useRef(null);
+  const audioRef2 = useRef(null);
+  const audioRef3 = useRef(null);
+  const audioRef4 = useRef(null);
+
+
   const sidebarRef = useRef(null);
   const contentRef = useRef(null);
   const searchBarRef = useRef(null);
   const [isOpen, setIsOpen] = useState(true);
 
-  const handlePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
+  const handlePlayPause1 = () => {
+    if (isPlaying1) {
+      audioRef1.current.pause();
     } else {
-      audioRef.current.play();
+      audioRef1.current.play();
     }
-    setIsPlaying(!isPlaying);
+    setIsPlaying1(!isPlaying1);
   };
- const handleRestart = () => {
-  audioRef.current.currentTime =0;
-  if (!isPlaying){
-    audioRef.current.play();
-    setIsPlaying(true);
-  }
- }
+  const handlePlayPause2 = () => {
+    if (isPlaying2) {
+      audioRef2.current.pause();
+    } else {
+      audioRef2.current.play();
+    }
+    setIsPlaying2(!isPlaying2);
+  };
+  const handlePlayPause3 = () => {
+    if (isPlaying3) {
+      audioRef3.current.pause();
+    } else {
+      audioRef3.current.play();
+    }
+    setIsPlaying3(!isPlaying3);
+  };
+  const handlePlayPause4 = () => {
+    if (isPlaying4) {
+      audioRef4.current.pause();
+    } else {
+      audioRef4.current.play();
+    }
+    setIsPlaying4(!isPlaying4);
+  };
+  const handleRestart1 = () => {
+    audioRef1.current.currentTime = 0;
+    if (!isPlaying1) {
+      audioRef1.current.play();
+      setIsPlaying1(true);
+    }
+  };
+  const handleRestart2 = () => {
+    audioRef2.current.currentTime = 0;
+    if (!isPlaying2) {
+      audioRef2.current.play();
+      setIsPlaying2(true);
+    }
+  }; 
+   const handleRestart3 = () => {
+    audioRef3.current.currentTime = 0;
+    if (!isPlaying3) {
+      audioRef3.current.play();
+      setIsPlaying3(true);
+    }
+  };
+  const handleRestart4 = () => {
+    audioRef4.current.currentTime = 0;
+    if (!isPlaying4) {
+      audioRef4.current.play();
+      setIsPlaying4(true);
+    }
+  };
   useEffect(() => {
     gsap.from(searchBarRef.current, {
       opacity: 0,
@@ -96,13 +156,30 @@ const Sidebar = () => {
       >
         <div className="text-white p-4 pt-6">
           <div className="font-capriola  text-2xl text-center flex">
-            <div className="font-ramaraja ml-16 font-extrabold text-pomegranate-500">raagam</div>
+            <div className="font-ramaraja ml-16 font-extrabold text-pomegranate-500">
+              raagam
+            </div>
           </div>
-          <div className="bg-mine-shaft-500 p-4 mt-10 rounded-md font-bold text-center">home</div>
-          <div className="bg-mine-shaft-500 p-4 mt-4 rounded-md font-bold  text-center">playlist</div>
-          <div className="bg-mine-shaft-500 p-4 mt-4 rounded-md font-bold  text-center">liked</div>
-          <div className="bg-mine-shaft-500 p-4 mt-4 rounded-md font-bold  text-center">hindi</div>
-          <div className="bg-mine-shaft-500 p-4 mt-4 rounded-md font-bold  text-center">liked</div>
+          <div className="bg-mine-shaft-500 p-4 mt-10 rounded-md font-bold text-center">
+            home
+          </div>
+          <Link to="/playlist" onClick={Playlist}>
+  <div className="bg-mine-shaft-500 p-4 mt-4 rounded-md font-bold text-center">
+    Playlist
+  </div>
+</Link>
+        
+          <div className="bg-mine-shaft-500 p-4 mt-4 rounded-md font-bold text-center flex items-center justify-center ">
+  liked <PiHeartFill className="w-6 h-6" />
+</div>
+          <div>
+          </div>
+          <div className="bg-mine-shaft-500 p-4 mt-4 rounded-md font-bold  text-center">
+            hindi
+          </div>
+          <div className="bg-mine-shaft-500 p-4 mt-4 rounded-md font-bold  text-center">
+            liked
+          </div>
         </div>
       </div>
 
@@ -127,45 +204,194 @@ const Sidebar = () => {
               Search
             </button>
           </div>
-          <div className="flex justify-between gap-4 ">
+          {/* sections */}
+          <div className="">
+            {/*section1*/}              
+            <div className="ml-6 font-bold text-xl text-white p-2">English</div>
+
+            <div className="flex justify-between gap-4 mb-4 ">
+            
+            <div className="bg-mine-shaft-500 px-10 py-5 text-white flex-1 text-center rounded-lg">
+              <div>
+                <div>
+                  <img
+                    src={thatssotrue}
+                    className="rounded-md"
+                    alt="That's So True"
+                  />
+                </div>
+                <div className="font-bold mt-2">THAT'S SO TRUE</div>
+                <div className="text-sm">Gracie Abrams</div>
+                <div className="flex bg-mine-shaft-400 rounded-md p-3 items-center mt-2 justify-center gap-1">
+
+                <button className="alien-button2" onClick={handlePlayPause2}>
+                  {isPlaying2 ? <PiPauseFill /> : <PiPlayFill />}
+                </button>
+                <button className="alien-button2" onClick={handleRestart2}>
+                  <VscDebugRestart />
+                </button>
+                </div>
+                <audio ref={audioRef2} src={Thatssotrue} />
+              </div>
+            </div>
+            <div className="bg-mine-shaft-500 px-10 py-5 text-white flex-1 text-center rounded-lg">
+              <div>
+                <div>
+                  <img
+                    src={theycallthislove}
+                    className="rounded-md"
+                    alt="Best Song Ever"
+                  />
+                </div>
+                <div className="font-bold mt-2">THEY CALL THIS LOVE</div>
+                <div className="text-sm">Elliot James</div>
+                <div className="flex bg-mine-shaft-400 rounded-md p-3 items-center mt-2 justify-center gap-1">
+
+                <button className="alien-button4" onClick={handlePlayPause4}>
+                  {isPlaying4 ? <PiPauseFill /> : <PiPlayFill />}
+                </button>
+                <button className="alien-button4" onClick={handleRestart4}>
+                  <VscDebugRestart />
+                </button>
+                </div>
+                <audio ref={audioRef4} src={Theycallthislove} />
+              </div>
+            </div>
             <div className="bg-mine-shaft-500 px-10 py-5 text-white flex-1 text-center rounded-lg">
               <div>
                 <img src={wildflower} className="rounded-md" alt="Wildflower" />
-                <div className="font-bold">WILDFLOWER</div>
-                <div>Billie Eilish</div>
-                <button className="alien-button" onClick={handlePlayPause}>
-                  {isPlaying ? <PiPauseFill/> : <PiPlayFill/>}
+                <div className="font-bold mt-2">WILDFLOWER</div>
+                <div className="text-sm">Billie Eilish</div>
+                <div className="flex bg-mine-shaft-400 rounded-md p-3 items-center mt-2 justify-center gap-1">
+                <button className="alien-button1 " onClick={handlePlayPause1}>
+                  {isPlaying1 ? <PiPauseFill /> : <PiPlayFill />}
                 </button>
-                <button className="alien-button" onClick={handleRestart}>
-                <VscDebugRestart />
+                <button className="alien-button1" onClick={handleRestart1}>
+                  <VscDebugRestart />
                 </button>
-                <audio ref={audioRef} src={Wildflower} />
+                </div>
+                <audio ref={audioRef1} src={Wildflower} />
               </div>
             </div>
             <div className="bg-mine-shaft-500 px-10 py-5 text-white flex-1 text-center rounded-lg">
               <div>
                 <div>
-                  <img src={thatssotrue} className="rounded-md" alt="That's So True" />
+                  <img
+                    src={onedirection}
+                    className="rounded-md"
+                    alt="Best Song Ever"
+                  />
                 </div>
-                <div className="font-bold">THAT'S SO TRUE</div>
-                <div>Gracie Abrams</div>
-                <button className="alien-button" onClick={handlePlayPause}>
-                  {isPlaying ? "Pause" : "Play"}
+                <div className="font-bold mt-2">BEST SONG EVER</div>
+                <div className="text-sm">One Direction</div>
+                <div className="flex bg-mine-shaft-400 rounded-md p-3 items-center mt-2 justify-center gap-1">
+
+                <button className="alien-button3" onClick={handlePlayPause3}>
+                  {isPlaying3 ? <PiPauseFill /> : <PiPlayFill />}
                 </button>
+                <button className="alien-button3" onClick={handleRestart3}>
+                  <VscDebugRestart />
+                </button>
+                </div>
+                <audio ref={audioRef3} src={Bestsongever} />
+              </div>
+            </div>
+            
+            
+          </div>
+
+          {/*section2*/}
+          <div className="ml-6 font-bold text-xl text-white p-2">Hindi</div>
+
+          
+          <div className="flex justify-between gap-4 mb-4 ">
+            <div className="bg-mine-shaft-500 px-10 py-5 text-white flex-1 text-center rounded-lg">
+              <div>
+                <img src={wildflower} className="rounded-md" alt="Wildflower" />
+                <div className="font-bold mt-2">WILDFLOWER</div>
+                <div className="text-sm">Billie Eilish</div>
+                <div className="flex bg-mine-shaft-400 rounded-md p-3 items-center mt-2 justify-center gap-1">
+                <button className="alien-button1 " onClick={handlePlayPause1}>
+                  {isPlaying1 ? <PiPauseFill /> : <PiPlayFill />}
+                </button>
+                <button className="alien-button1" onClick={handleRestart1}>
+                  <VscDebugRestart />
+                </button>
+                </div>
+                <audio ref={audioRef1} src={Wildflower} />
               </div>
             </div>
             <div className="bg-mine-shaft-500 px-10 py-5 text-white flex-1 text-center rounded-lg">
               <div>
                 <div>
-                  <img src={onedirection} className="rounded-md" alt="Best Song Ever" />
+                  <img
+                    src={thatssotrue}
+                    className="rounded-md"
+                    alt="That's So True"
+                  />
                 </div>
-                <div className="font-bold">BEST SONG EVER</div>
-                <div>One Direction</div>
-                <button className="alien-button" onClick={handlePlayPause}>
-                  {isPlaying ? "Pause" : "Play"}
+                <div className="font-bold mt-2">THAT'S SO TRUE</div>
+                <div className="text-sm">Gracie Abrams</div>
+                <div className="flex bg-mine-shaft-400 rounded-md p-3 items-center mt-2 justify-center gap-1">
+
+                <button className="alien-button2" onClick={handlePlayPause2}>
+                  {isPlaying2 ? <PiPauseFill /> : <PiPlayFill />}
                 </button>
+                <button className="alien-button2" onClick={handleRestart2}>
+                  <VscDebugRestart />
+                </button>
+                </div>
+                <audio ref={audioRef2} src={Thatssotrue} />
               </div>
             </div>
+            <div className="bg-mine-shaft-500 px-10 py-5 text-white flex-1 text-center rounded-lg">
+              <div>
+                <div>
+                  <img
+                    src={onedirection}
+                    className="rounded-md"
+                    alt="Best Song Ever"
+                  />
+                </div>
+                <div className="font-bold mt-2">BEST SONG EVER</div>
+                <div className="text-sm">One Direction</div>
+                <div className="flex bg-mine-shaft-400 rounded-md p-3 items-center mt-2 justify-center gap-1">
+
+                <button className="alien-button3" onClick={handlePlayPause3}>
+                  {isPlaying3 ? <PiPauseFill /> : <PiPlayFill />}
+                </button>
+                <button className="alien-button3" onClick={handleRestart3}>
+                  <VscDebugRestart />
+                </button>
+                </div>
+                <audio ref={audioRef3} src={Bestsongever} />
+              </div>
+            </div>
+            <div className="bg-mine-shaft-500 px-10 py-5 text-white flex-1 text-center rounded-lg">
+              <div>
+                <div>
+                  <img
+                    src={theycallthislove}
+                    className="rounded-md"
+                    alt="Best Song Ever"
+                  />
+                </div>
+                <div className="font-bold mt-2">THEY CALL THIS LOVE</div>
+                <div className="text-sm">Elliot James</div>
+                <div className="flex bg-mine-shaft-400 rounded-md p-3 items-center mt-2 justify-center gap-1">
+
+                <button className="alien-button4" onClick={handlePlayPause4}>
+                  {isPlaying4 ? <PiPauseFill /> : <PiPlayFill />}
+                </button>
+                <button className="alien-button4" onClick={handleRestart4}>
+                  <VscDebugRestart />
+                </button>
+                </div>
+                <audio ref={audioRef4} src={Theycallthislove} />
+              </div>
+            </div>
+          </div>
+      
           </div>
         </div>
       </div>
